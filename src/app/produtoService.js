@@ -68,4 +68,14 @@ export default class ProdutoService {
 
         localStorage.setItem(PRODUCT, JSON.stringify(products))
     }
+
+    delete = (sku) => {
+        const index  = this.getIndex(sku)
+        if(index !== null){
+            const product = this.getProduct()
+            product.splice(index, 1)
+            localStorage.setItem(PRODUCT, JSON.stringify(product) )
+            return product
+        }
+    }
 }

@@ -148,7 +148,7 @@ class CadastroProduto extends React.Component {
                         <div className="col-md-6">
                             <div className="form-group">
                                 <label>Provider: *</label>
-                                <input name="producer" 
+                                <input name="provider" 
                                     value={this.state.provider} 
                                     type="text" 
                                     className="form-control" 
