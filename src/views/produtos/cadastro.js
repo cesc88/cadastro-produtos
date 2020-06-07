@@ -30,6 +30,7 @@ class CadastroProduto extends React.Component {
     }
 
     onSubmit = (event) => {
+        event.preventDefault();
         const product = {
             name: this.state.name,
             sku: this.state.sku,
@@ -78,96 +79,98 @@ class CadastroProduto extends React.Component {
                 </div>
                 <div className="card-body">
 
-                    {
-                        this.state.success &&
-                            <div className="alert alert-dismissible alert-success">
-                                <button type="button" className="close" data-dismiss="alert">&times;</button>
-                                <strong>Uhuuu \o/!</strong> Cadastro realizado com sucesso.
-                            </div>
-                    }
+                    <form id="frmProduct" onSubmit={this.onSubmit}>
 
-                    {
-                        this.state.errors.length > 0 &&
-
-                        this.state.errors.map( msg => {
-                            return(
-                                <div className="alert alert-dismissible alert-danger">
+                        {
+                            this.state.success &&
+                                <div className="alert alert-dismissible alert-success">
                                     <button type="button" className="close" data-dismiss="alert">&times;</button>
-                                    <strong>Ops!</strong> {msg}
+                                    <strong>Uhuuu \o/!</strong> Cadastro realizado com sucesso.
                                 </div>
-                            )
-                        })
-                            
-                    }
-                    
-                    <div className="row">
-                        <div className="col-md-6">
-                            <div className="form-group">
-                                <label>Name: *</label>
-                                <input name="name" 
-                                    value={this.state.name}  
-                                    type="text" 
-                                    className="form-control" 
-                                    onChange={this.onChange}/>  
-                            </div>
-                        </div>
-                        <div className="col-md-6">
-                            <div className="form-group">
-                                <label>SKU: *</label>
-                                <input name="sku" 
-                                    value={this.state.sku} 
-                                    type="text"
-                                    disabled={this.state.updating} 
-                                    className="form-control" 
-                                    onChange={this.onChange}/>  
-                            </div>
-                        </div>
-                    </div>
+                        }
 
-                    <div className="row">
-                        <div className="col-md-12">
-                            <label>Description:</label>
-                            <textarea name="description" 
-                                value={this.state.description}
-                                onChange={this.onChange} 
-                                className="form-control"></textarea>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-6">
-                            <div className="form-group">
-                                <label>Price: *</label>
-                                <input name="price" 
-                                    value={this.state.price} 
-                                    type="text" 
-                                    className="form-control" 
-                                    onChange={this.onChange}/>  
+                        {
+                            this.state.errors.length > 0 &&
+
+                            this.state.errors.map( msg => {
+                                return(
+                                    <div className="alert alert-dismissible alert-danger">
+                                        <button type="button" className="close" data-dismiss="alert">&times;</button>
+                                        <strong>Ops!</strong> {msg}
+                                    </div>
+                                )
+                            })
+                                
+                        }
+                        
+                        <div className="row">
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <label>Name: *</label>
+                                    <input name="name" 
+                                        value={this.state.name}  
+                                        type="text" 
+                                        className="form-control" 
+                                        onChange={this.onChange}/>  
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <label>SKU: *</label>
+                                    <input name="sku" 
+                                        value={this.state.sku} 
+                                        type="text"
+                                        disabled={this.state.updating} 
+                                        className="form-control" 
+                                        onChange={this.onChange}/>  
+                                </div>
                             </div>
                         </div>
 
-                        <div className="col-md-6">
-                            <div className="form-group">
-                                <label>Provider: *</label>
-                                <input name="provider" 
-                                    value={this.state.provider} 
-                                    type="text" 
-                                    className="form-control" 
-                                    onChange={this.onChange}/>  
+                        <div className="row">
+                            <div className="col-md-12">
+                                <label>Description:</label>
+                                <textarea name="description" 
+                                    value={this.state.description}
+                                    onChange={this.onChange} 
+                                    className="form-control"></textarea>
                             </div>
                         </div>
+                        <div className="row">
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <label>Price: *</label>
+                                    <input name="price" 
+                                        value={this.state.price} 
+                                        type="text" 
+                                        className="form-control" 
+                                        onChange={this.onChange}/>  
+                                </div>
+                            </div>
 
-                    </div>
-                    <div className="row">
-                        <div className="col-md-1">
-                            <button className="btn btn-success" onClick={this.onSubmit}>
-                                {this.state.updating ? 'Update' : 'Save'}
-                            </button>
-                        </div>
-                        <div className="col-md-1">
-                            <button className="btn btn-primary" onClick={this.fieldClean}>Clean</button>
-                        </div>
-                    </div>
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <label>Provider: *</label>
+                                    <input name="provider" 
+                                        value={this.state.provider} 
+                                        type="text" 
+                                        className="form-control" 
+                                        onChange={this.onChange}/>  
+                                </div>
+                            </div>
 
+                        </div>
+                        <div className="row">
+                            <div className="col-md-1">
+                                <button type="submit" className="btn btn-success">
+                                    {this.state.updating ? 'Update' : 'Save'}
+                                </button>
+                            </div>
+                            <div className="col-md-1">
+                                <button className="btn btn-primary" onClick={this.fieldClean}>Clean</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>      
         )
