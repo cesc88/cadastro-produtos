@@ -1,4 +1,6 @@
 import React from 'react'
+import Card from '../../components/card'
+import ProdutosTable from './produtosTable'
 import ProdutoService from '../../app/produtoService'
 import { withRouter} from 'react-router-dom'
 
@@ -31,40 +33,11 @@ class ConsultaProduto extends React.Component{
 
     render(){
         return(
-            <div className="card">
-                <div className="card-header">
-                    Consulta Produtos
-                </div>
-                <div className="card-body">
-                <table className="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>SKU</th>
-                            <th>Price</th>
-                            <th>Provider</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.products.map((product, index) => {
-                            return(
-                                <tr key={index}>
-                                    <th>{product.name}</th>
-                                    <th>{product.sku}</th>
-                                    <th>{product.price}</th>
-                                    <th>{product.provider}</th>
-                                    <th>
-                                        <button onClick={ () => this.prepareEdit(product.sku)} className="btn btn-primary">Edit</button>
-                                        <button onClick={ () => this.delete(product.sku) }className="btn btn-danger">Delete</button>
-                                    </th>
-                                </tr>
-                                )}
-                            )}
-                    </tbody>
-                </table>
-            </div>
-        </div> 
+            <Card hearder="Consulta Produtos">
+                <ProdutosTable products={this.state.products} 
+                editAction={this.prepareEdit} 
+                deleteAction={this.delete}/>
+            </Card>
         )
     }
 }
