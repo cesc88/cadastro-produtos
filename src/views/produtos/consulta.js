@@ -21,15 +21,14 @@ class ConsultaProduto extends React.Component{
         this.setState({ products })
     }
 
-    prepareEdit = (sku) => {
+    prepareEdit = sku => {
         this.props.history.push(`/cadastro-produtos/${sku}`)
     }
 
-    delete = (sku) => {
+    delete = sku => {
         const products = this.service.delete(sku)
         this.setState({ products })
     }
-
 
     render(){
         return(

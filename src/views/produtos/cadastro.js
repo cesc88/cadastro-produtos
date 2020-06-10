@@ -24,13 +24,13 @@ class CadastroProduto extends React.Component {
         this.service = new ProdutoService();
     }
 
-    onChange = (event) => {
+    onChange = event => {
         const vl = event.target.value
         const fieldName = event.target.name
         this.setState({ [fieldName]: vl })
     }
 
-    onSubmit = (event) => {
+    onSubmit = event => {
         event.preventDefault();
         const product = {
             name: this.state.name,

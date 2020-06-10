@@ -6,7 +6,7 @@ export function ErroValidate(errors){
 
 export default class ProdutoService {
 
-    validate = (product) => {
+    validate = product => {
         const errors = []
 
         if(!product.name){
@@ -37,7 +37,7 @@ export default class ProdutoService {
         return JSON.parse(product)
     }
 
-    getIndex = (sku) => {
+    getIndex = sku => {
         let index = null;
         this.getProduct().forEach((product, i) => {
             if(product.sku === sku){
@@ -47,7 +47,7 @@ export default class ProdutoService {
         return index;
     }
 
-    save = (product) => {
+    save = product => {
 
         this.validate(product);
 
@@ -69,7 +69,7 @@ export default class ProdutoService {
         localStorage.setItem(PRODUCT, JSON.stringify(products))
     }
 
-    delete = (sku) => {
+    delete = sku => {
         const index  = this.getIndex(sku)
         if(index !== null){
             const product = this.getProduct()
